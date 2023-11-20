@@ -1,0 +1,82 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    app: nginx-proxy
+    tenant: ekscluster2
+  name: nginx-proxy-ekscluster2
+  namespace: thanos
+data:
+  nginx.conf: |-
+    worker_processes  5;  ## Default: 1
+    error_log  /dev/stderr;
+    pid        /tmp/nginx.pid;
+    worker_rlimit_nofile 8192;
+
+    events {
+      worker_connections  4096;  ## Default: 1024
+    }
+
+    http {
+      default_type application/octet-stream;
+      log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+        '"$request" $body_bytes_sent "$http_referer" '
+        '"$http_user_agent" "$http_x_forwarded_for"';
+      access_log   /dev/stderr  main;
+      sendfile     on;
+      tcp_nopush   on;
+      resolver kube-dns.kube-system.svc.cluster.local;
+
+      server { # reverse-proxy and tenant header setting
+        listen 80;
+        proxy_set_header THANOS-TENANT "ekscluster2";
+
+        location / {
+          proxy_pass      http://thanos-receive-default.thanos.svc.cluster.local:19291$request_uri;
+        }
+      }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-proxy
+    tenant: ekscluster2
+  name: nginx-proxy-ekscluster2
+  namespace: thanos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-proxy
+      tenant: ekscluster2
+      part-of: thanos
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy
+        tenant: ekscluster2
+        part-of: thanos
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/nginx
+        resources:
+          limits:
+            cpu: 1
+            memory: 1024Mi
+          requests:
+            cpu: 0.5
+            memory: 256Mi
+      volumes:
+        - name: config-volume
+          configMap:
+            name: nginx-proxy-ekscluster2

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-proxy
+    tenant: ekscluster2
+    servicemonitor: default-servicemonitor
+    monitor: "false"
+  name: nginx-proxy-ekscluster2
+  namespace: thanos
+spec:
+  type: LoadBalancer
+  ports:
+  - name: web
+    port: 80
+    targetPort: http
+  selector:
+    app: nginx-proxy
+    tenant: ekscluster2

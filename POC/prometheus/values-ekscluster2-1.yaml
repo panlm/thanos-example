@@ -1,0 +1,37 @@
+grafana:
+  enabled: false
+prometheus:
+  prometheusSpec:
+    replicas: 2
+    retention: 4h
+    retentionSize: "20GB"
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    topologySpreadConstraints: 
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          app: prometheus
+    # additionalScrapeConfigsSecret: 
+    #   enabled: true
+    #   name: additional-scrape-configs
+    #   key: avalanche-additional.yaml
+    storageSpec: 
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+        selector: {}
+    remoteWrite: 
+    - url: http://k8s-thanos-thanosre-xxx.elb.us-east-2.amazonaws.com:19291/api/v1/receive
+    remoteWriteDashboards: true
+    externalLabels: 
+      cluster: "ekscluster2"
+      cluster_name: "ekscluster2"
+      origin_prometheus: "ekscluster2"

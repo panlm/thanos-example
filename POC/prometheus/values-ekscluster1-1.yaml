@@ -1,0 +1,45 @@
+grafana:
+  enabled: true
+  deploymentStrategy:
+    type: Recreate
+  service:
+    type: NodePort
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/scheme: internet-facing
+    hosts:
+      - grafana-poc1120.xxx
+prometheus:
+  prometheusSpec:
+    replicas: 2
+    retention: 4h
+    retentionSize: "20GB"
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    topologySpreadConstraints: 
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          app: prometheus
+    # additionalScrapeConfigsSecret: 
+    #   enabled: true
+    #   name: additional-scrape-configs
+    #   key: avalanche-additional.yaml
+    storageSpec: 
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+        selector: {}
+    externalLabels: 
+      cluster: "ekscluster1"
+      cluster_name: "ekscluster1"
+      origin_prometheus: "ekscluster1"

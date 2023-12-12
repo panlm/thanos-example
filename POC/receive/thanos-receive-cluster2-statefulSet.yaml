@@ -72,7 +72,7 @@ spec:
         - --remote-write.address=0.0.0.0:19291
         - --receive.replication-factor=1
         - --tsdb.path=/var/thanos/receive
-        - --tsdb.retention=4h
+        - --tsdb.retention=30m # https://thanos.io/tip/components/receive.md/#tenant-lifecycle-management
         - --label=replica="$(NAME)"
         - --label=receive="true"
         - --label=cluster="ekscluster2"

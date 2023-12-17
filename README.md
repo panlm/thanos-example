@@ -17,4 +17,5 @@ find ./ -type f -name "*" |while read filename ; do
   cat $filename |envsubst > ../POC/$filename
 done
 
+cd ../POC/
 ```

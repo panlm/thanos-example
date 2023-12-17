@@ -9,11 +9,11 @@ metadata:
     controller.receive.thanos.io/hashring: cluster2
   name: thanos-receive-cluster2
   namespace: thanos
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: thanos-receive-cluster2.${DOMAIN_NAME}
 spec:
   # clusterIP: None
   type: LoadBalancer
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: $(NAME).${DOMAIN_NAME}
   ports:
   - name: grpc
     port: 10901

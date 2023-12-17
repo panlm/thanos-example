@@ -7,10 +7,10 @@ prometheus:
     enabled: true
     type: LoadBalancer
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: thanos-sidecar-${CLUSTER_NAME}.${DOMAIN_NAME}
+      external-dns.alpha.kubernetes.io/hostname: thanos-sidecar-${CLUSTER_NAME_1}.${DOMAIN_NAME}
   prometheusSpec:
     thanos: 
       objectStorageConfig:
         existingSecret:
-          name: thanos-s3-config-${CLUSTER_NAME}
-          key: thanos-s3-config-${CLUSTER_NAME}
+          name: thanos-s3-config-${CLUSTER_NAME_1}
+          key: thanos-s3-config-${CLUSTER_NAME_1}

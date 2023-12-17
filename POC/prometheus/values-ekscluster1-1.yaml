@@ -16,6 +16,8 @@ grafana:
   #   hosts:
   #     - grafana-poc1120.xxx
 prometheus:
+  enabled: true
+  agentMode: false
   prometheusSpec:
     replicas: 2
     retention: 4h

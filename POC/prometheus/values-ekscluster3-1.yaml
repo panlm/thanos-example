@@ -1,6 +1,7 @@
 grafana:
   enabled: false
 prometheus:
+  enabled: true
   agentMode: true
   prometheusSpec:
     replicas: 2

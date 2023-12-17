@@ -1,21 +1,7 @@
 grafana:
-  enabled: true
-  deploymentStrategy:
-    type: Recreate
-  service:
-    type: LoadBalancer
-    annotations:
-      service.beta.kubernetes.io/aws-load-balancer-type: "external"
-      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-      external-dns.alpha.kubernetes.io/hostname: grafana.${DOMAIN_NAME}
-  # ingress:
-  #   enabled: true
-  #   annotations:
-  #     kubernetes.io/ingress.class: alb
-  #     alb.ingress.kubernetes.io/scheme: internet-facing
-  #   hosts:
-  #     - grafana-poc1120.xxx
+  enabled: false
 prometheus:
+  agentMode: true
   prometheusSpec:
     replicas: 2
     retention: 4h
@@ -43,7 +29,10 @@ prometheus:
             requests:
               storage: 50Gi
         selector: {}
+    remoteWrite: 
+    - url: http://thanos-receive-${CLUSTER_NAME_3}.${DOMAIN_NAME}:19291/api/v1/receive
+    remoteWriteDashboards: true
     externalLabels: 
-      cluster: "${CLUSTER_NAME_1}"
-      cluster_name: "${CLUSTER_NAME_1}"
-      origin_prometheus: "${CLUSTER_NAME_1}"
+      cluster: "${CLUSTER_NAME_3}"
+      cluster_name: "${CLUSTER_NAME_3}"
+      origin_prometheus: "${CLUSTER_NAME_3}"

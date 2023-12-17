@@ -46,19 +46,21 @@ spec:
         - --log.format=logfmt
         - --query.replica-label=prometheus_replica
         - --query.replica-label=rule_replica
-        - --endpoint=dnssrv+_grpc._tcp.thanos-receive.thanos.svc.cluster.local
-        - --endpoint=dnssrv+_grpc._tcp.thanos-rule.thanos.svc.cluster.local
-        - --endpoint=dnssrv+_grpc._tcp.thanos-sidecar.thanos.svc.cluster.local
+        # - --endpoint=dnssrv+_grpc._tcp.thanos-receive.thanos.svc.cluster.local
+        # - --endpoint=dnssrv+_grpc._tcp.thanos-rule.thanos.svc.cluster.local
+        # - --endpoint=dnssrv+_grpc._tcp.thanos-sidecar.thanos.svc.cluster.local
         #- --endpoint=dnssrv+_grpc._tcp.thanos-store.thanos.svc.cluster.local
         # for store
         - --endpoint=dnssrv+_grpc._tcp.thanos-store-cluster1.thanos.svc.cluster.local
         - --endpoint=dnssrv+_grpc._tcp.thanos-store-cluster2.thanos.svc.cluster.local
         - --endpoint=dnssrv+_grpc._tcp.thanos-store-cluster3.thanos.svc.cluster.local
         # for sidecar
-        - --endpoint=k8s-monitori-promoper-xxx.elb.us-east-2.amazonaws.com:10901
+        - --endpoint=thanos-sidecar-${CLUSTER_NAME_1}.${DOMAIN_NAME}:10901
+        - --endpoint=thanos-sidecar-${CLUSTER_NAME_2}.${DOMAIN_NAME}:10901
         # - --endpoint=k8s-monitori-promoper-xxx.elb.us-east-2.amazonaws.com:10901
         # for receive
-        - --endpoint=k8s-thanos-thanosre-xxx.elb.us-east-2.amazonaws.com:10901
+        - --endpoint=dnssrv+_grpc._tcp.thanos-receive-cluster2.thanos.svc.cluster.local
+        - --endpoint=dnssrv+_grpc._tcp.thanos-receive-cluster3.thanos.svc.cluster.local
         # - --endpoint=k8s-thanos-thanosre-xxx.elb.us-east-2.amazonaws.com:10901
         - --query.timeout=5m
         - --query.lookback-delta=15m

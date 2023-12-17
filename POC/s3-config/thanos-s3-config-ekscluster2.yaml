@@ -1,7 +1,7 @@
 type: S3
-prefix: "ekscluster2"
+prefix: "${CLUSTER_NAME_2}"
 config:
-    bucket: "thanos-store-1234"
-    endpoint: "s3.us-east-2.amazonaws.com"
-    region: "us-east-2"
+    bucket: "${THANOS_BUCKET_NAME}"
+    endpoint: "s3.${AWS_DEFAULT_REGION}.amazonaws.com"
+    region: "${AWS_DEFAULT_REGION}"
     sts_endpoint: "https://sts.amazonaws.com"

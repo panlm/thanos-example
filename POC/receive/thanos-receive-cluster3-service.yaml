@@ -6,12 +6,14 @@ metadata:
     app.kubernetes.io/instance: thanos-receive-cluster3
     app.kubernetes.io/name: thanos-receive
     app.kubernetes.io/version: v0.32.5
-    controller.receive.thanos.io/hashring: ekscluster3
+    controller.receive.thanos.io/hashring: cluster3
   name: thanos-receive-cluster3
   namespace: thanos
-spec:
+spec:Í
   # clusterIP: None
   type: LoadBalancer
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: $(NAME).${DOMAIN_NAME}
   ports:
   - name: grpc
     port: 10901
@@ -26,4 +28,4 @@ spec:
     app.kubernetes.io/component: database-write-hashring
     app.kubernetes.io/instance: thanos-receive-cluster3
     app.kubernetes.io/name: thanos-receive
-    controller.receive.thanos.io/hashring: ekscluster3
+    controller.receive.thanos.io/hashring: cluster3

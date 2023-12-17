@@ -29,9 +29,9 @@ prometheus:
               storage: 50Gi
         selector: {}
     remoteWrite: 
-    - url: http://k8s-thanos-thanosre-xxx.elb.us-east-2.amazonaws.com:19291/api/v1/receive
+    - url: http://thanos-receive-${CLUSTER_NAME_2}.${DOMAIN_NAME}:19291/api/v1/receive
     remoteWriteDashboards: true
     externalLabels: 
-      cluster: "ekscluster2"
-      cluster_name: "ekscluster2"
-      origin_prometheus: "ekscluster2"
+      cluster: "${CLUSTER_NAME_2}"
+      cluster_name: "${CLUSTER_NAME_2}"
+      origin_prometheus: "${CLUSTER_NAME_2}"

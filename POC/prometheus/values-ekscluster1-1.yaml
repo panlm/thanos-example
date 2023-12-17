@@ -3,14 +3,17 @@ grafana:
   deploymentStrategy:
     type: Recreate
   service:
-    type: NodePort
-  ingress:
-    enabled: true
+    type: LoadBalancer
     annotations:
-      kubernetes.io/ingress.class: alb
-      alb.ingress.kubernetes.io/scheme: internet-facing
-    hosts:
-      - grafana-poc1120.xxx
+      service.beta.kubernetes.io/aws-load-balancer-type: "external"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+  # ingress:
+  #   enabled: true
+  #   annotations:
+  #     kubernetes.io/ingress.class: alb
+  #     alb.ingress.kubernetes.io/scheme: internet-facing
+  #   hosts:
+  #     - grafana-poc1120.xxx
 prometheus:
   prometheusSpec:
     replicas: 2
@@ -33,7 +36,7 @@ prometheus:
     storageSpec: 
       volumeClaimTemplate:
         spec:
-          storageClassName: gp3
+          storageClassName: gp2
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:

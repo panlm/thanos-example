@@ -8,6 +8,19 @@ grafana:
       service.beta.kubernetes.io/aws-load-balancer-type: "external"
       service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
       external-dns.alpha.kubernetes.io/hostname: grafana.${DOMAIN_NAME}
+  # persistence config
+  # refer grafana values in following helm chart
+  # https://github.com/grafana/helm-charts
+  persistence: 
+    type: pvc
+    enabled: true
+    storageClassName: gp2
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
+    # annotations: {}
+    finalizers:
+      - kubernetes.io/pvc-protection
   # ingress:
   #   enabled: true
   #   annotations:

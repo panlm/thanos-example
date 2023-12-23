@@ -31,6 +31,9 @@ grafana:
 prometheus:
   enabled: true
   agentMode: false
+  serviceAccount:
+    create: false
+    name: "prometheus-sa"
   prometheusSpec:
     replicas: 2
     retention: 4h

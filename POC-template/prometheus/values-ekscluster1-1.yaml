@@ -8,6 +8,9 @@ grafana:
       service.beta.kubernetes.io/aws-load-balancer-type: "external"
       service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
       external-dns.alpha.kubernetes.io/hostname: grafana.${DOMAIN_NAME}
+  grafana.ini: 
+    auth:
+      sigv4_auth_enabled: true 
   # persistence config
   # refer grafana values in following helm chart
   # https://github.com/grafana/helm-charts

@@ -1,2 +1,2 @@
-grafana:
-  enabled: false
+# keep this null file
+# due to fileexists function in terraform does not support wildcast '*'

@@ -155,7 +155,7 @@ spec:
         runAsUser: 65534
         seccompProfile:
           type: RuntimeDefault
-      serviceAccountName: thanos-receive-cluster3
+      serviceAccountName: thanos-receive-${CLUSTER_NAME_3}
       terminationGracePeriodSeconds: 900
       # volumes:
       # - configMap:

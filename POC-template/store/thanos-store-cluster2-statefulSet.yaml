@@ -123,7 +123,7 @@ spec:
         runAsUser: 65534
         seccompProfile:
           type: RuntimeDefault
-      serviceAccountName: thanos-store-cluster2
+      serviceAccountName: thanos-store-${CLUSTER_NAME_2}
       terminationGracePeriodSeconds: 120
       volumes: []
   volumeClaimTemplates:

@@ -1,0 +1,53 @@
+commonLabels: 
+  thanos_name: "thanoslab"
+
+query:
+  enabled: true
+  replicaCount: 2
+  autoscaling:
+    enabled: true
+    minReplicas: "2"
+    maxReplicas: "6"
+    targetCPU: "50"
+    targetMemory: "70"
+  stores: 
+  # store endpoint
+  - "dnssrv+_grpc._tcp.thanoslab-ekscluster1-storegateway.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-ekscluster2-storegateway.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-ekscluster3-storegateway.thanos.svc.cluster.local"
+  # sidecar endpoint
+  - "thanos-sidecar-${CLUSTER_NAME_1}.${DOMAIN_NAME}:10901"
+  - "thanos-sidecar-${CLUSTER_NAME_2}.${DOMAIN_NAME}:10901"
+  # receive endpoint
+  - "dnssrv+_grpc._tcp.thanoslab-ekscluster2-receive.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-ekscluster3-receive.thanos.svc.cluster.local"
+  # dnsDiscovery:
+  #   enabled: true
+
+
+queryFrontend:
+  enabled: true
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "external"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+      external-dns.alpha.kubernetes.io/hostname: "thanoslab-query-frontend.${DOMAIN_NAME}"
+  autoscaling:
+    enabled: false
+  extraFlags: 
+  - --query-range.split-interval=2h
+  - --labels.split-interval=2h
+  - --query-frontend.log-queries-longer-than=30s                                                                                                                             
+
+bucketweb:
+  enabled: false
+
+compactor:
+  enabled: false
+
+ruler:
+  enabled: false
+
+receive:
+  enabled: false

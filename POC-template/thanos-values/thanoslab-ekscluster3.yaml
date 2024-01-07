@@ -1,0 +1,50 @@
+fullnameOverride: "thanoslab-${CLUSTER_NAME_3}"
+commonLabels: 
+  thanos_name: "thanoslab"
+
+existingObjstoreSecret: "bitnami-thanos-s3-config-${CLUSTER_NAME_3}"
+
+query:
+  enabled: false
+queryFrontend:
+  enabled: false
+
+bucketweb:
+  enabled: true
+compactor:
+  enabled: true
+
+storegateway:
+  enabled: true
+  serviceAccount:
+    create: false
+    name: "thanos-store-${CLUSTER_NAME_3}"
+
+ruler:
+  enabled: false
+
+receive:
+  enabled: true
+  # args: 
+  extraFlags: 
+  - --label=cluster="${CLUSTER_NAME_3}"
+  - --label=cluster_name="${CLUSTER_NAME_3}"
+  - --label=origin_prometheus="${CLUSTER_NAME_3}"
+  - --receive.default-tenant-id=${CLUSTER_NAME_3}
+  mode: standalone
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "external"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+      external-dns.alpha.kubernetes.io/hostname: "thanoslab-receive-cluster3.${DOMAIN_NAME}"
+  serviceAccount:
+    create: false
+    name: "thanos-receive-${CLUSTER_NAME_3}"
+  autoscaling:
+    enabled: true
+    minReplicas: "1"
+    maxReplicas: "5"
+    targetCPU: "50"
+    targetMemory: "70"
+

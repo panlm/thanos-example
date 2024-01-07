@@ -35,6 +35,7 @@ prometheus:
         selector: {}
     remoteWrite: 
     - url: http://thanos-receive-cluster3.${DOMAIN_NAME}:19291/api/v1/receive
+    - url: http://thanoslab-receive-cluster3.${DOMAIN_NAME}:19291/api/v1/receive
     remoteWriteDashboards: true
     externalLabels: 
       cluster: "${CLUSTER_NAME_3}"

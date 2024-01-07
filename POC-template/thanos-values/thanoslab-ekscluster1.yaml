@@ -1,0 +1,27 @@
+fullnameOverride: "thanoslab-${CLUSTER_NAME_1}"
+commonLabels: 
+  thanos_name: "thanoslab"
+
+existingObjstoreSecret: "bitnami-thanos-s3-config-${CLUSTER_NAME_1}"
+
+query:
+  enabled: false
+queryFrontend:
+  enabled: false
+
+bucketweb:
+  enabled: true
+compactor:
+  enabled: true
+
+storegateway:
+  enabled: true
+  serviceAccount:
+    create: false
+    name: "thanos-store-${CLUSTER_NAME_1}"
+
+ruler:
+  enabled: false
+
+receive:
+  enabled: false

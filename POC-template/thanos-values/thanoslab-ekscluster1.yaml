@@ -19,6 +19,11 @@ storegateway:
   serviceAccount:
     create: false
     name: "thanos-store-${CLUSTER_NAME_1}"
+  persistence:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
 
 ruler:
   enabled: false

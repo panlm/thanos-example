@@ -19,6 +19,11 @@ storegateway:
   serviceAccount:
     create: false
     name: "thanos-store-${CLUSTER_NAME_3}"
+  persistence:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
 
 ruler:
   enabled: false
@@ -47,4 +52,9 @@ receive:
     maxReplicas: "5"
     targetCPU: "50"
     targetMemory: "70"
+  persistence:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
 

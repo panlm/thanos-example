@@ -62,8 +62,8 @@ spec:
         - name: OBJSTORE_CONFIG
           valueFrom:
             secretKeyRef:
-              name: thanos-s3-config-ekscluster2
-              key: thanos-s3-config-ekscluster2
+              name: thanos-s3-config-${CLUSTER_NAME_2}
+              key: objstore.yml
         - name: HOST_IP_ADDRESS
           valueFrom:
             fieldRef:

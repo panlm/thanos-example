@@ -4,6 +4,14 @@ commonLabels:
 
 existingObjstoreSecret: "bitnami-thanos-s3-config-${CLUSTER_NAME_3}"
 
+# easy to exec for troubleshooting
+image:
+  registry: quay.io
+  repository: thanos/thanos
+  tag: v0.33.0
+  digest: ""
+  pullPolicy: IfNotPresent
+
 query:
   enabled: false
 queryFrontend:
@@ -37,6 +45,7 @@ receive:
   - --label=origin_prometheus="${CLUSTER_NAME_3}"
   - --receive.default-tenant-id=${CLUSTER_NAME_3}
   mode: standalone
+  replicaCount: 2
   service:
     type: LoadBalancer
     annotations:
@@ -46,12 +55,6 @@ receive:
   serviceAccount:
     create: false
     name: "thanos-receive-${CLUSTER_NAME_3}"
-  autoscaling:
-    enabled: true
-    minReplicas: "1"
-    maxReplicas: "5"
-    targetCPU: "50"
-    targetMemory: "70"
   persistence:
     enabled: true
     accessModes:

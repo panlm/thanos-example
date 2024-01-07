@@ -19,8 +19,19 @@ queryFrontend:
 
 bucketweb:
   enabled: true
+  serviceAccount:
+    create: false
+    name: "thanos-store-${CLUSTER_NAME_2}"
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "external"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
 compactor:
   enabled: true
+  serviceAccount:
+    create: false
+    name: "thanos-store-${CLUSTER_NAME_2}"
 
 storegateway:
   enabled: true

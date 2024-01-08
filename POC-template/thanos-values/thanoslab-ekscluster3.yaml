@@ -18,7 +18,7 @@ queryFrontend:
   enabled: false
 
 bucketweb:
-  enabled: true
+  enabled: false
   serviceAccount:
     create: false
     name: "thanos-store-${CLUSTER_NAME_3}"

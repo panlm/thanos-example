@@ -23,7 +23,7 @@ cd POC-template
 find ./ -type d -name "[a-z]*" -exec mkdir ../POC/{} \;
 
 find ./ -type f -name "*" |while read filename ; do
-  cat $filename |envsubst > ../POC/$filename
+  cat $filename |envsubst '$CLUSTER_NAME_1 $CLUSTER_NAME_2 $CLUSTER_NAME_3 $DOMAIN_NAME $THANOS_BUCKET_NAME $AWS_DEFAULT_REGION' > ../POC/$filename
 done
 ```
 

@@ -4,6 +4,14 @@ commonLabels:
 
 existingObjstoreSecret: "bitnami-thanos-s3-config-${CLUSTER_NAME_1}"
 
+# easy to exec for troubleshooting
+image:
+  registry: quay.io
+  repository: thanos/thanos
+  tag: v0.33.0
+  digest: ""
+  pullPolicy: IfNotPresent
+
 query:
   enabled: false
 queryFrontend:

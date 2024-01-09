@@ -19,15 +19,15 @@ query:
     targetMemory: "70"
   stores: 
   # store endpoint
-  - "dnssrv+_grpc._tcp.thanoslab-ekscluster1-storegateway.thanos.svc.cluster.local"
-  - "dnssrv+_grpc._tcp.thanoslab-ekscluster2-storegateway.thanos.svc.cluster.local"
-  - "dnssrv+_grpc._tcp.thanoslab-ekscluster3-storegateway.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-${CLUSTER_NAME_1}-storegateway.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-${CLUSTER_NAME_2}-storegateway.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-${CLUSTER_NAME_3}-storegateway.thanos.svc.cluster.local"
   # sidecar endpoint
-  - "thanos-sidecar-${CLUSTER_NAME_1}.${DOMAIN_NAME}:10901"
-  - "thanos-sidecar-${CLUSTER_NAME_2}.${DOMAIN_NAME}:10901"
+  - "thanoslab-sidecar-${CLUSTER_NAME_1}.${DOMAIN_NAME}:10901"
+  - "thanoslab-sidecar-${CLUSTER_NAME_2}.${DOMAIN_NAME}:10901"
   # receive endpoint
-  - "dnssrv+_grpc._tcp.thanoslab-ekscluster2-receive.thanos.svc.cluster.local"
-  - "dnssrv+_grpc._tcp.thanoslab-ekscluster3-receive.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-${CLUSTER_NAME_2}-receive.thanos.svc.cluster.local"
+  - "dnssrv+_grpc._tcp.thanoslab-${CLUSTER_NAME_3}-receive.thanos.svc.cluster.local"
   # dnsDiscovery:
   #   enabled: true
 
@@ -45,7 +45,7 @@ queryFrontend:
   extraFlags: 
   - --query-range.split-interval=2h
   - --labels.split-interval=2h
-  - --query-frontend.log-queries-longer-than=30s                                                                                                                             
+  - --query-frontend.log-queries-longer-than=30s
 
 bucketweb:
   enabled: false

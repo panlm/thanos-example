@@ -3,6 +3,9 @@ commonLabels:
   thanos_name: "thanoslab"
 
 existingObjstoreSecret: "thanos-s3-config-${CLUSTER_NAME_1}"
+serviceAccount:
+  create: false
+  name: ""
 
 # easy to exec for troubleshooting
 image:
@@ -27,6 +30,7 @@ bucketweb:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-type: "external"
       service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
+
 compactor:
   enabled: true
   serviceAccount:

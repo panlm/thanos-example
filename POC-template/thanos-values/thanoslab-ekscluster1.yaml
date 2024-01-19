@@ -2,7 +2,7 @@ fullnameOverride: "thanoslab-${CLUSTER_NAME_1}"
 commonLabels: 
   thanos_name: "thanoslab"
 
-existingObjstoreSecret: "bitnami-thanos-s3-config-${CLUSTER_NAME_1}"
+existingObjstoreSecret: "thanos-s3-config-${CLUSTER_NAME_1}"
 
 # easy to exec for troubleshooting
 image:

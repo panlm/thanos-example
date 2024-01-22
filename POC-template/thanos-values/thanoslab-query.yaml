@@ -1,3 +1,4 @@
+fullnameOverride: "thanoslab"
 commonLabels: 
   thanos_name: "thanoslab"
 

@@ -10,11 +10,12 @@
 为了方便部署，配置模板中预置了变量，使用下面脚本创建实验用的目录，并且针对你的实验环境替换相应的变量。配合本实验环境使用的 Terraform 脚本参见（[github](https://github.com/panlm/eks-blueprints-clusters/tree/main/multi-cluster-thanos)）。
 
 ```sh
+DATE=$(TZ=EAT-8 date +%m%d)
 CLUSTER_NAME_1=ekscluster1
 CLUSTER_NAME_2=ekscluster2
 CLUSTER_NAME_3=ekscluster3
-DOMAIN_NAME=thanos.eks1217.aws.panlm.xyz
-THANOS_BUCKET_NAME=thanos-store-123456
+DOMAIN_NAME=thanos.eks${DATE}.aws.panlm.xyz
+THANOS_BUCKET_NAME=thanos-store-${DATE}-$RANDOM
 AWS_DEFAULT_REGION=us-east-2
 export CLUSTER_NAME_1 CLUSTER_NAME_2 CLUSTER_NAME_3 DOMAIN_NAME THANOS_BUCKET_NAME AWS_DEFAULT_REGION
 

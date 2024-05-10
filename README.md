@@ -29,6 +29,6 @@ done
 ```
 
 # refer
-- https://panlm.github.io/EKS/solutions/monitor/POC-prometheus-ha-architect-with-thanos/
+- https://panlm.github.io/EKS/solutions/monitor/TC-prometheus-ha-architect-with-thanos/
 
 

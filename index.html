@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="目录说明">
+        <meta name="description" content="docs for bedrock connector">
       
       
       
@@ -14,7 +14,7 @@
       
       
       
-        <link rel="next" href="tags/">
+        <link rel="next" href="guide/">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#readme" class="md-skip">
+        <a href="#welcome-to-bedrock-connector-doc" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              README
+              Welcome to Bedrock Connector Doc
             
           </span>
         </div>
@@ -220,7 +220,7 @@
   
     
   
-  README
+  Welcome to Bedrock Connector Doc
 
       </a>
     </li>
@@ -231,16 +231,19 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="tags/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="guide/" class="md-tabs__link">
+          
   
     
   
-  Tags
+  Guide
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -288,19 +291,16 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="guide/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="tags/" class="md-tabs__link">
+        
   
     
   
-  Guide
+  Tags
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -362,7 +362,7 @@
         
   
   <span class="md-ellipsis">
-    README
+    Welcome to Bedrock Connector Doc
   </span>
   
 
@@ -378,16 +378,52 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="tags/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="guide/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
-    Tags
+    Guide
   </span>
   
 
-      </a>
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -510,52 +546,16 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="tags/" class="md-nav__link">
         
-          
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="guide/" class="md-nav__link ">
-              
   
   <span class="md-ellipsis">
-    Guide
+    Tags
   </span>
   
 
-            </a>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            Guide
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-          </ul>
-        </nav>
-      
+      </a>
     </li>
   
 
@@ -593,37 +593,7 @@
                   
 
 
-<h1 id="readme">README<a class="headerlink" href="#readme" title="Permanent link">&para;</a></h1>
-<p>目录说明</p>
-<ul>
-<li>prometheus: 包含针对 <a href="https://github.com/prometheus-operator/prometheus-operator">prometheus operator</a> 的定制 Values</li>
-<li>s3-config: 提供 Thanos 组件访问 S3 的相关配置信息，这些配置将会被创建成 kubernetes 的 secret</li>
-<li>thanos-values: 包含针对 <a href="https://github.com/bitnami/charts/tree/main/bitnami/thanos">bitnami thanos chart</a> 的定制 Values </li>
-<li>thanos-yaml: 包含自建 Thanos 使用的相关 Yaml 定义文件。更多模板参考 <a href="https://github.com/thanos-io/kube-thanos">link</a></li>
-</ul>
-<h1 id="setup-variable-for-your-poc-environment">setup variable for your POC environment<a class="headerlink" href="#setup-variable-for-your-poc-environment" title="Permanent link">&para;</a></h1>
-<p>为了方便部署，配置模板中预置了变量，使用下面脚本创建实验用的目录，并且针对你的实验环境替换相应的变量。配合本实验环境使用的 Terraform 脚本参见（<a href="https://github.com/panlm/eks-blueprints-clusters/tree/main/multi-cluster-thanos">github</a>）。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">DATE</span><span class="o">=</span><span class="k">$(</span><span class="nv">TZ</span><span class="o">=</span>EAT-8<span class="w"> </span>date<span class="w"> </span>+%m%d<span class="k">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">CLUSTER_NAME_1</span><span class="o">=</span>ekscluster1
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">CLUSTER_NAME_2</span><span class="o">=</span>ekscluster2
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">CLUSTER_NAME_3</span><span class="o">=</span>ekscluster3
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nv">DOMAIN_NAME</span><span class="o">=</span>thanos.eks<span class="si">${</span><span class="nv">DATE</span><span class="si">}</span>.aws.panlm.xyz
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nv">THANOS_BUCKET_NAME</span><span class="o">=</span>thanos-store-<span class="si">${</span><span class="nv">DATE</span><span class="si">}</span>-<span class="nv">$RANDOM</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-east-2
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">export</span><span class="w"> </span>CLUSTER_NAME_1<span class="w"> </span>CLUSTER_NAME_2<span class="w"> </span>CLUSTER_NAME_3<span class="w"> </span>DOMAIN_NAME<span class="w"> </span>THANOS_BUCKET_NAME<span class="w"> </span>AWS_DEFAULT_REGION
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>mkdir<span class="w"> </span>POC
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">cd</span><span class="w"> </span>POC-template
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>find<span class="w"> </span>./<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;[a-z]*&quot;</span><span class="w"> </span>-exec<span class="w"> </span>mkdir<span class="w"> </span>../POC/<span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>find<span class="w"> </span>./<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="w"> </span><span class="p">|</span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>filename<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span>cat<span class="w"> </span><span class="nv">$filename</span><span class="w"> </span><span class="p">|</span>envsubst<span class="w"> </span><span class="s1">&#39;$CLUSTER_NAME_1 $CLUSTER_NAME_2 $CLUSTER_NAME_3 $DOMAIN_NAME $THANOS_BUCKET_NAME $AWS_DEFAULT_REGION&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>../POC/<span class="nv">$filename</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">done</span>
-</code></pre></div>
-<h1 id="refer">refer<a class="headerlink" href="#refer" title="Permanent link">&para;</a></h1>
-<ul>
-<li><a href="https://panlm.github.io/EKS/solutions/monitor/TC-prometheus-ha-architect-with-thanos/">https://panlm.github.io/EKS/solutions/monitor/TC-prometheus-ha-architect-with-thanos/</a></li>
-</ul>
+<h1 id="welcome-to-bedrock-connector-doc">Welcome to Bedrock Connector Doc<a class="headerlink" href="#welcome-to-bedrock-connector-doc" title="Permanent link">&para;</a></h1>
 
 
 

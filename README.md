@@ -19,6 +19,8 @@ THANOS_BUCKET_NAME=thanos-store-${DATE}-$RANDOM
 AWS_DEFAULT_REGION=us-east-2
 export CLUSTER_NAME_1 CLUSTER_NAME_2 CLUSTER_NAME_3 DOMAIN_NAME THANOS_BUCKET_NAME AWS_DEFAULT_REGION
 
+aws s3 cb s3://${THANOS_BUCKET_NAME}
+
 mkdir POC
 cd POC-template
 find ./ -type d -name "[a-z]*" -exec mkdir ../POC/{} \;

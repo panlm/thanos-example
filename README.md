@@ -31,6 +31,6 @@ done
 ```
 
 # refer
-- https://panlm.github.io/EKS/solutions/monitor/TC-prometheus-ha-architect-with-thanos/
+- https://aws.amazon.com/cn/blogs/china/extending-the-prometheus-high-availability-monitoring-architecture-using-thanos/
 
 
